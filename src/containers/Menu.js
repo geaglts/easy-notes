@@ -34,7 +34,6 @@ function Menu() {
         </button>
         <h1>{APP_NAME}</h1>
         <button className="change-theme">
-          {darkTheme ? <FaMoon /> : <FaSun />}
           <Toggle onClick={changeTheme} status={darkTheme} />
         </button>
         <ul>
@@ -77,7 +76,6 @@ function Menu() {
           <Link to="/fast">Nota rapida</Link>
         </li>
         <li className="menu__list--item">
-          {darkTheme ? <FaMoon /> : <FaSun />}
           <Toggle onClick={changeTheme} status={darkTheme} />
         </li>
         {hasUser && (

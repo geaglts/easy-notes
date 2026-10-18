@@ -1,5 +1,5 @@
 function classnames(...classes) {
-  return classes.join(' ');
+  return classes.filter(Boolean).join(' ');
 }
 
 export default classnames;

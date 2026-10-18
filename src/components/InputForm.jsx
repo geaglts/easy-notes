@@ -4,6 +4,7 @@ import { BsEyeSlash, BsEye } from 'react-icons/bs';
 
 const InputForm = ({
   labelName,
+  link,
   isPassword = false,
   type = 'text',
   error,
@@ -19,7 +20,10 @@ const InputForm = ({
 
   return (
     <label className="InputLabel">
-      {labelName && labelName}
+      <div className="label-section">
+        <p>{labelName && labelName}</p>
+        {link && link}
+      </div>
       <div className="InputForm__Container">
         <input
           className="InputForm"

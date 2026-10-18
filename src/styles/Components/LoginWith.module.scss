@@ -2,34 +2,31 @@
 
 .container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 8px;
+  color: white;
   align-items: center;
   width: 100%;
-  border: 2px solid $gray;
+  border: 1px solid #6b6b76;
   padding: 8px 4px;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 250ms ease-in;
+  transition: all 250ms ease-in !important;
 
   &:hover {
-    transition: all 150ms ease-out;
+    transition: all 150ms ease-out !important;
     transform: scale(1.01);
-
-    .provider {
-      color: $primary;
-    }
   }
 }
 
 .providerLogo {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 }
 
 .provider {
   text-decoration: none;
-  font-size: 14pt;
-  color: $color-gray;
+  font-size: 12pt;
 
   &:hover {
     transform: none;

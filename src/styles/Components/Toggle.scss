@@ -10,10 +10,13 @@ $toggle-size: 22px;
   padding: 3px;
 
   &__Circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: $toggle-size;
     height: $toggle-size;
     border-radius: 100px;
-    background-color: $secondary;
+    background-color: $primary;
     transition: transform 300ms ease-in;
   }
 }

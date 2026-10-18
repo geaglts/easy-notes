@@ -10,8 +10,6 @@ import { Loading } from '@components/Loading';
 import { Layout } from '@containers/Layout/Layout';
 import LoginWith from '@components/LoginWith';
 
-import loginLightImage from '@assets/images/login.svg';
-import loginDarkImage from '@assets/images/login__dark.svg';
 import googleIcon from '@icons/google-icon.svg';
 
 import { Context } from '@context';
@@ -31,7 +29,7 @@ const Login = () => {
   const { darkTheme, changeUserStatus, hasUser } = useContext(Context);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState(
-    browserStorage.get(BROWSER_REMEMBER_USER_NAME) || ''
+    browserStorage.get(BROWSER_REMEMBER_USER_NAME) || '',
   );
   const navigate = useNavigate();
   const { formErrors, addErrors } = useformError();
@@ -118,11 +116,19 @@ const Login = () => {
       <div className={`Login${themeClass}`}>
         <section className="Login__Left">
           <div className="Login__Form--container">
-            <h1>Ingresa tus datos</h1>
-            <p>Bienvenido de vuelta</p>
+            <h1>Inicia Sesión</h1>
+            <p className="my-2">Bienvenido de vuelta</p>
+
             <form ref={form} onSubmit={onSubmitForm}>
+              <LoginWith
+                to={`${process.env.API_URL}/auth/google`}
+                provider="google"
+                providerLogo={googleIcon}
+                titleStyle={'login-with-title'}
+              />
+              <div className="divider">o con tu cuenta</div>
               <InputForm
-                labelName="Correo electronico o Nombre de usuario:"
+                labelName="Correo o Nombre de usuario"
                 name="email"
                 type="text"
                 placeholder="correo"
@@ -132,7 +138,12 @@ const Login = () => {
                 required
               />
               <InputForm
-                labelName="Contraseña:"
+                labelName="Contraseña"
+                link={
+                  <Link to="/recovery-password" className="LinkToRecoveryPassword">
+                    ¿La olvidaste?
+                  </Link>
+                }
                 name="password"
                 placeholder="contraseña"
                 isPassword
@@ -149,25 +160,14 @@ const Login = () => {
                 <label htmlFor="remember-user">Recordar Usuario</label>
               </div>
               <Button label="Iniciar sesión" type="submit" />
-              <LoginWith
-                to={`${process.env.API_URL}/auth/google`}
-                provider="google"
-                providerLogo={googleIcon}
-              />
-              <Link to="/register" className="register-link">
-                Quiero registrarme
-              </Link>
+              <div className="create-new-account">
+                <p>¿Nuevo?</p>
+                <Link to="/register" className="register-link">
+                  Crea una cuenta
+                </Link>
+              </div>
             </form>
-            <Link to="/recovery-password" className="LinkToRecoveryPassword">
-              ¿Se te olvido tu contraseña?
-            </Link>
           </div>
-        </section>
-        <section className="Login__Right">
-          <img
-            src={darkTheme ? loginDarkImage : loginLightImage}
-            alt="login easy notes"
-          />
         </section>
       </div>
       <Toast messages={formErrors} />

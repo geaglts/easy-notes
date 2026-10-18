@@ -3,17 +3,59 @@
 .Login_Container {
   &_dark {
     background-color: $dark;
+
+    .Login__Form--container {
+      color: white;
+    }
+
+    .divider {
+      color: #dcdce3;
+
+      &::before,
+      &::after {
+        // background: #dcdce3;
+        background: #dcdce3;
+      }
+    }
+
+    .login-with-title {
+      font-weight: 600;
+      color: white !important;
+
+      &:hover {
+        color: white !important;
+      }
+    }
+  }
+
+  &_light {
+    .divider {
+      color: #6b6b76;
+
+      &::before,
+      &::after {
+        // background: #dcdce3;
+        background: #dcdce3;
+      }
+    }
+
+    .login-with-title {
+      font-weight: 600;
+      color: black !important;
+
+      &:hover {
+        color: black !important;
+      }
+    }
   }
 }
 
 .Login {
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: calc(100vh - 60px);
   max-width: 1920px;
-  margin: 0 auto;
-  overflow: hidden;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
 
   .Login__Left {
     display: grid;
@@ -27,8 +69,7 @@
       grid-template-rows: repeat(3, auto);
       font-size: $font-size-md;
       width: 350px;
-      background-color: $white;
-      box-shadow: 2px 2px 10px 1px rgba($dark, 0.1);
+      // box-shadow: 2px 2px 10px 1px rgba($dark, 0.1);
 
       h1 {
         font-size: $font-size-md;
@@ -57,23 +98,10 @@
           height: 40px;
           font-size: $font-size-ssm;
           letter-spacing: 0;
-          font-weight: 900;
+          font-weight: 600;
           font-family: $font-secondary;
-          text-transform: uppercase;
           background-color: $primary;
           color: $white;
-          margin-top: 8px;
-        }
-
-        .register-link {
-          font-size: $font-size-sm;
-          color: $primary;
-          font-weight: bold;
-          font-family: $font-secondary;
-          justify-self: center;
-          &:hover {
-            color: $dark;
-          }
         }
       }
     }
@@ -89,21 +117,45 @@
     }
   }
 
-  .Login__Right {
-    display: grid;
-    justify-items: start;
+  // new styles 2026
+  .divider {
+    display: flex;
     align-items: center;
-    overflow: hidden;
+    font-size: 14px;
+    gap: 12px;
 
-    img {
-      width: 80%;
+    &::before,
+    &::after {
+      height: 1px;
+      flex: 1;
+      content: '';
+    }
+  }
+
+  .create-new-account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    .register-link {
+      font-size: $font-size-ssm;
+      color: rgba($primary, 0.8);
+      font-weight: bold;
+      font-family: $font-secondary;
+      justify-self: center;
+      &:hover {
+        color: $dark;
+      }
     }
   }
 
   .LinkToRecoveryPassword {
-    color: $primary;
-    font-size: $font-size-sm;
-    margin-top: 4px;
+    color: rgba($primary, 0.8);
+    font-size: $font-size-ssm;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -128,9 +180,6 @@
         display: flex;
         flex-direction: column;
       }
-    }
-    .Login__Right {
-      display: none;
     }
   }
 }
