@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaMoon, FaSun } from 'react-icons/fa';
 import { BiMenu } from 'react-icons/bi';
 import '@styles/Containers/Menu.scss';
 
@@ -12,9 +11,29 @@ import { Toggle } from '../components/Toggle';
 function Menu() {
   const navigate = useNavigate();
   const [fullMenu, setFullMenu] = useState(false);
+  const [closing, setClosing] = useState(false);
   const { darkTheme, changeTheme, hasUser, changeUserStatus } = useContext(Context);
 
   const theme = darkTheme ? ' dark' : ' white';
+
+  useEffect(() => {
+    document.body.style.overflow = fullMenu ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [fullMenu]);
+
+  const closeMenu = () => {
+    setClosing(true);
+  };
+
+  const handleAnimationEnd = (e) => {
+    if (e.target != e.currentTarget) return;
+    if (closing) {
+      setFullMenu(false);
+      setClosing(false);
+    }
+  };
 
   const handleMenu = () => {
     setFullMenu(!fullMenu);
@@ -28,40 +47,63 @@ function Menu() {
 
   if (fullMenu) {
     return (
-      <nav className={`FullMenu${theme}`}>
-        <button className="close-button" onClick={handleMenu}>
-          X
-        </button>
-        <h1>{APP_NAME}</h1>
-        <button className="change-theme">
-          <Toggle onClick={changeTheme} status={darkTheme} />
-        </button>
+      <nav
+        className={`FullMenu${theme}${closing ? ' closing' : ''}`}
+        onAnimationEnd={handleAnimationEnd}
+      >
+        <div className="fullmenu-header">
+          <h1>{APP_NAME}</h1>
+          <div className="fullmenu-header-right">
+            <li>
+              <div className="menu-item">
+                <Toggle onClick={changeTheme} status={darkTheme} />
+              </div>
+            </li>
+            <li>
+              <button className="close-button menu-item" onClick={closeMenu}>
+                X
+              </button>
+            </li>
+          </div>
+        </div>
         <ul>
           <li>
-            <Link className="link" to="/fast" onClick={handleMenu}>
-              Nota Rapida
+            <Link className="link menu-item" to="/fast" onClick={closeMenu}>
+              ⚡Nota Rapida
             </Link>
           </li>
           {hasUser && (
             <li>
-              <button className="link" onClick={onLogout}>
+              <button className="link menu-item" onClick={onLogout}>
                 Cerrar sesión
               </button>
             </li>
           )}
         </ul>
-        <div>
+        <ul className="bottom-options">
           {!hasUser && (
             <>
-              <Link onClick={handleMenu} to="/login" className="user-status">
-                iniciar sesion
-              </Link>
-              <Link onClick={handleMenu} to="/register" className="user-status">
-                registrate
-              </Link>
+              <li>
+                <Link
+                  onClick={handleMenu}
+                  to="/login"
+                  className="user-status secondary-full menu-item"
+                >
+                  Iniciar Sesión
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={handleMenu}
+                  to="/register"
+                  className="user-status secondary-outline menu-item"
+                >
+                  Registrate
+                </Link>
+              </li>
             </>
           )}
-        </div>
+        </ul>
       </nav>
     );
   }
