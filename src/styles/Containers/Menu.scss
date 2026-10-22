@@ -339,3 +339,26 @@
     }
   }
 }
+
+.menu__list--item.btn {
+  font-size: 11pt;
+  padding: 0.9rem 1.4rem;
+  border: 1px solid #2c2c38;
+  border-radius: $radius;
+  font-weight: 600;
+  transition: all 0.4s linear;
+  cursor: pointer;
+  text-decoration: none;
+  transform: none;
+}
+
+.menu__list--item.btn:hover {
+  background-color: rgba($primary, 0.1);
+  border-color: rgba($primary, 0.5);
+  transition: all 0.3s linear;
+}
+
+.menu__container.white .menu__list--item.btn {
+  color: $primary;
+  border-color: $primary;
+}

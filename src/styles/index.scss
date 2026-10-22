@@ -37,11 +37,11 @@ a {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  transition: transform 400ms ease !important;
+  transition: transform 400ms ease;
 
   &:hover {
-    transition: transform 200ms ease !important;
-    color: $primary !important;
+    transition: transform 200ms ease;
+    color: $primary;
   }
 }
 

@@ -144,8 +144,10 @@
       font-weight: bold;
       font-family: $font-secondary;
       justify-self: center;
+      text-decoration: none;
+
       &:hover {
-        color: $dark;
+        text-decoration: underline;
       }
     }
   }
@@ -156,6 +158,12 @@
     font-weight: 600;
     margin: 0;
     padding: 0;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      color: $primary;
+    }
   }
 }
 

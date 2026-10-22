@@ -114,9 +114,14 @@ function Menu() {
         {APP_NAME}
       </Link>
       <ul className="menu__list">
-        <li className="menu__list--item">
-          <Link to="/fast">Nota rapida</Link>
-        </li>
+        {!hasUser && (
+          <>
+            <Link className="menu__list--item btn" to="/login">
+              Iniciar Sesión
+            </Link>
+          </>
+        )}
+
         <li className="menu__list--item">
           <Toggle onClick={changeTheme} status={darkTheme} />
         </li>

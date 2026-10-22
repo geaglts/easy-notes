@@ -20,21 +20,22 @@ function Home() {
       <Helmet>
         <title>{APP_NAME} | Administra tus notas de manera segura</title>
       </Helmet>
-      <main className="HomePage__Page" style={{ backgroundColor: darkTheme ? '#1c1b22' : '#fff' }}>
+      <main
+        className="HomePage__Page"
+        style={{ backgroundColor: darkTheme ? '#141414' : '#f8f8f8' }}
+      >
         <div className="Introduction__Section">
           <section>
             <h1>
-              <span style={{ color: darkTheme ? '#fff' : '#475ded' }}>Bienvenido a </span>
+              <span style={{ color: darkTheme ? '#fff' : '#475ded' }}>
+                Bienvenido a{' '}
+              </span>
               {APP_NAME}
             </h1>
-            <p style={{ color: darkTheme ? '#fff' : '#1c1b22' }}>Crea notas rapidas y seguras de forma rapida y sencilla totalmente gratis.</p>
+            <p style={{ color: darkTheme ? '#fff' : '#1c1b22' }}>
+              Crea y administra tus notas de forma rapida y sencilla.
+            </p>
             <Link to="/fast">¡Crear mi primera nota!</Link>
-            <Link to="/login" className="login__button">
-              Iniciar sesion
-            </Link>
-            <Link to="/register" className="register__button">
-              Crear una cuenta
-            </Link>
           </section>
           <section>
             <img src={TakingNotesImage} alt="Persona tomando notas en easy notes" />
